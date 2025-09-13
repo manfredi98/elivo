@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Elivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #0A2540;
+            --secondary-blue: #1e3a8a;
+            --accent-yellow: #FFD60A;
+            --light-yellow: #ffed4a;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+        
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+        
+        .filters h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .filter-input,
+        .filter-select {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .filter-input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+        }
+        
+        .filter-button {
+            background: linear-gradient(135deg, var(--accent-yellow), var(--light-yellow));
+            color: var(--primary-blue);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contacts-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .table-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            font-size: 0.9rem;
+        }
+        
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-nuevo {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+        }
+        
+        .status-contactado {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .status-en_proceso {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+        
+        .status-completado {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .status-cancelado {
+            background: rgba(107, 114, 128, 0.1);
+            color: #6b7280;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-view {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-edit {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+        }
+        
+        .btn-delete {
+            background: var(--error);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .contact-details {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .detail-group {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .detail-value {
+            color: var(--text-dark);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔧 Panel de Administración - Elivo</h1>
+    </div>
+
+    <div class="container">
+        <!-- Statistics -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalContacts">-</div>
+                <div class="stat-label">Total Contactos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="newContacts">-</div>
+                <div class="stat-label">Nuevos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="inProcessContacts">-</div>
+                <div class="stat-label">En Proceso</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completedContacts">-</div>
+                <div class="stat-label">Completados</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <h3>Filtros</h3>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label class="filter-label">Buscar</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="Nombre, email, empresa...">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Estado</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">Todos los estados</option>
+                        <option value="nuevo">Nuevo</option>
+                        <option value="contactado">Contactado</option>
+                        <option value="en_proceso">En Proceso</option>
+                        <option value="completado">Completado</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Tipo de Servicio</label>
+                    <select id="serviceFilter" class="filter-select">
+                        <option value="">Todos los servicios</option>
+                        <option value="instalacion_residencial">Instalación Residencial</option>
+                        <option value="instalacion_comercial">Instalación Comercial</option>
+                        <option value="instalacion_industrial">Instalación Industrial</option>
+                        <option value="mantencion_preventiva">Mantención Preventiva</option>
+                        <option value="consultoria_tecnica">Consultoría Técnica</option>
+                        <option value="emergencia">Emergencia 24/7</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button class="filter-button" onclick="applyFilters()">Aplicar Filtros</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts Table -->
+        <div class="contacts-table">
+            <div class="table-header">
+                <h3>Lista de Contactos</h3>
+            </div>
+            <div class="table-container">
+                <div id="loadingMessage" class="loading">Cargando contactos...</div>
+                <div id="errorMessage" class="error" style="display: none;"></div>
+                <table id="contactsTable" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Servicio</th>
+                            <th>Ubicación</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Detail Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detalles del Contacto</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="contactDetails" class="contact-details">
+                <!-- Contact details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allContacts = [];
+        let filteredContacts = [];
+
+        // Load contacts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadContacts();
+        });
+
+        // Load contacts from API
+        async function loadContacts() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                
+                if (data.success) {
+                    allContacts = data.contacts;
+                    filteredContacts = [...allContacts];
+                    updateStats();
+                    renderTable();
+                } else {
+                    showError('Error al cargar contactos: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Error de conexión al cargar contactos');
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            const total = allContacts.length;
+            const nuevo = allContacts.filter(c => c.status === 'nuevo').length;
+            const enProceso = allContacts.filter(c => c.status === 'en_proceso').length;
+            const completado = allContacts.filter(c => c.status === 'completado').length;
+
+            document.getElementById('totalContacts').textContent = total;
+            document.getElementById('newContacts').textContent = nuevo;
+            document.getElementById('inProcessContacts').textContent = enProceso;
+            document.getElementById('completedContacts').textContent = completado;
+        }
+
+        // Render contacts table
+        function renderTable() {
+            const tbody = document.getElementById('contactsTableBody');
+            const table = document.getElementById('contactsTable');
+            const loading = document.getElementById('loadingMessage');
+            
+            loading.style.display = 'none';
+            table.style.display = 'table';
+            
+            tbody.innerHTML = '';
+            
+            if (filteredContacts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2rem;">No se encontraron contactos</td></tr>';
+                return;
+            }
+            
+            filteredContacts.forEach(contact => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${contact.id}</td>
+                    <td>${contact.nombre} ${contact.apellido}</td>
+                    <td>${contact.email}</td>
+                    <td>${contact.telefono}</td>
+                    <td>${getServiceName(contact.tipo_servicio)}</td>
+                    <td>${contact.ubicacion}</td>
+                    <td><span class="status-badge status-${contact.status}">${getStatusName(contact.status)}</span></td>
+                    <td>${formatDate(contact.timestamp)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-view" onclick="viewContact(${contact.id})">Ver</button>
+                            <button class="btn btn-edit" onclick="editContact(${contact.id})">Editar</button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const serviceFilter = document.getElementById('serviceFilter').value;
+            
+            filteredContacts = allContacts.filter(contact => {
+                const matchesSearch = !searchTerm || 
+                    contact.nombre.toLowerCase().includes(searchTerm) ||
+                    contact.apellido.toLowerCase().includes(searchTerm) ||
+                    contact.email.toLowerCase().includes(searchTerm) ||
+                    (contact.empresa && contact.empresa.toLowerCase().includes(searchTerm));
+                
+                const matchesStatus = !statusFilter || contact.status === statusFilter;
+                const matchesService = !serviceFilter || contact.tipo_servicio === serviceFilter;
+                
+                return matchesSearch && matchesStatus && matchesService;
+            });
+            
+            renderTable();
+        }
+
+        // View contact details
+        async function viewContact(id) {
+            try {
+                const response = await fetch(`/api/contacts/${id}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const contact = data.contact;
+                    const details = document.getElementById('contactDetails');
+                    
+                    details.innerHTML = `
+                        <div class="detail-group">
+                            <div class="detail-label">ID:</div>
+                            <div class="detail-value">${contact.id}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Nombre:</div>
+                            <div class="detail-value">${contact.nombre} ${contact.apellido}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Email:</div>
+                            <div class="detail-value">${contact.email}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Teléfono:</div>
+                            <div class="detail-value">${contact.telefono}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Empresa:</div>
+                            <div class="detail-value">${contact.empresa || 'No especificada'}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Tipo de Servicio:</div>
+                            <div class="detail-value">${getServiceName(contact.tipo_servicio)}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Ubicación:</div>
+                            <div class="detail-value">${contact.ubicacion}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Presupuesto Estimado:</div>
+                            <div class="detail-value">${getBudgetName(contact.presupuesto_estimado)}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Fecha Preferida:</div>
+                            <div class="detail-value">${contact.fecha_preferida || 'No especificada'}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Estado:</div>
+                            <div class="detail-value"><span class="status-badge status-${contact.status}">${getStatusName(contact.status)}</span></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Mensaje:</div>
+                            <div class="detail-value">${contact.mensaje}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Newsletter:</div>
+                            <div class="detail-value">${contact.newsletter ? 'Sí' : 'No'}</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Fecha de Registro:</div>
+                            <div class="detail-value">${formatDate(contact.timestamp)}</div>
+                        </div>
+                    `;
+                    
+                    document.getElementById('contactModal').style.display = 'block';
+                } else {
+                    showError('Error al cargar detalles del contacto');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Error de conexión al cargar detalles');
+            }
+        }
+
+        // Edit contact (placeholder)
+        function editContact(id) {
+            alert('Función de edición en desarrollo');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Helper functions
+        function getServiceName(service) {
+            const services = {
+                'instalacion_residencial': 'Instalación Residencial',
+                'instalacion_comercial': 'Instalación Comercial',
+                'instalacion_industrial': 'Instalación Industrial',
+                'mantencion_preventiva': 'Mantención Preventiva',
+                'consultoria_tecnica': 'Consultoría Técnica',
+                'emergencia': 'Emergencia 24/7',
+                'otro': 'Otro'
+            };
+            return services[service] || service;
+        }
+
+        function getStatusName(status) {
+            const statuses = {
+                'nuevo': 'Nuevo',
+                'contactado': 'Contactado',
+                'en_proceso': 'En Proceso',
+                'completado': 'Completado',
+                'cancelado': 'Cancelado'
+            };
+            return statuses[status] || status;
+        }
+
+        function getBudgetName(budget) {
+            const budgets = {
+                'menos_500000': 'Menos de $500.000',
+                '500000_1000000': '$500.000 - $1.000.000',
+                '1000000_2000000': '$1.000.000 - $2.000.000',
+                '2000000_5000000': '$2.000.000 - $5.000.000',
+                'mas_5000000': 'Más de $5.000.000',
+                'consultar': 'Consultar'
+            };
+            return budgets[budget] || 'No especificado';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-CL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
+
