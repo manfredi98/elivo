@@ -49,7 +49,7 @@ const Nosotros = () => {
             
             <p className="text-lg text-gray-700 font-open-sans mb-8 leading-relaxed">
               <strong>Elivo</strong> es una empresa especializada en soluciones eléctricas integrales 
-              con más de 10 años de experiencia en La Serena y Región de Coquimbo. 
+              con más de 20 años de experiencia en La Serena y Región de Coquimbo. 
               Nuestro equipo de profesionales altamente capacitados se dedica a brindar 
               servicios de la más alta calidad, cumpliendo con los más estrictos estándares 
               de seguridad y eficiencia.

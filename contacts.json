@@ -1,1 +1,60 @@
-[]
+[
+  {
+    "id": 1757707441930,
+    "nombre": "Luciano",
+    "apellido": "Manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "empresa": "elivo",
+    "tipo_servicio": "emergencia",
+    "ubicacion": "la serena",
+    "presupuesto_estimado": "500000_1000000",
+    "fecha_preferida": "2025-09-13",
+    "mensaje": "sdasad",
+    "acepto_terminos": true,
+    "newsletter": true,
+    "ip_address": "190.215.124.60",
+    "timestamp": "2025-09-12T20:04:01.930Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758642632412,
+    "nombre": "Luciano",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "tipo_servicio": "instalacion",
+    "mensaje": "hola",
+    "timestamp": "2025-09-23T15:50:32.413Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758642652537,
+    "nombre": " luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "tipo_servicio": "instalacion",
+    "mensaje": "hola",
+    "timestamp": "2025-09-23T15:50:52.537Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758642731380,
+    "nombre": "Luciano",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "tipo_servicio": "instalacion",
+    "mensaje": "no entro\n",
+    "timestamp": "2025-09-23T15:52:11.380Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758642731421,
+    "nombre": "Luciano",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "tipo_servicio": "instalacion",
+    "mensaje": "no entro\n",
+    "timestamp": "2025-09-23T15:52:11.421Z",
+    "status": "nuevo"
+  }
+]

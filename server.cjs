@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/contacto', (req, res) => {
-    res.sendFile(path.join(__dirname, 'contacto.html'));
+    res.sendFile(path.join(__dirname, 'contacto-simple.html'));
 });
 
 app.get('/nosotros', (req, res) => {
@@ -56,29 +56,21 @@ app.get('/nosotros', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'admin.html'));
+    res.sendFile(path.join(__dirname, 'admin-simple.html'));
 });
 
 // API Routes
 app.post('/api/contact', (req, res) => {
     const {
         nombre,
-        apellido,
         email,
         telefono,
-        empresa,
         tipo_servicio,
-        ubicacion,
-        presupuesto_estimado,
-        fecha_preferida,
-        mensaje,
-        acepto_terminos,
-        newsletter,
-        ip
+        mensaje
     } = req.body;
 
     // Validate required fields
-    if (!nombre || !apellido || !email || !telefono || !tipo_servicio || !ubicacion || !mensaje) {
+    if (!nombre || !email || !telefono || !tipo_servicio || !mensaje) {
         return res.status(400).json({
             success: false,
             message: 'Faltan campos requeridos'
@@ -89,18 +81,10 @@ app.post('/api/contact', (req, res) => {
     const newContact = {
         id: Date.now(), // Simple ID generation
         nombre,
-        apellido,
         email,
         telefono,
-        empresa: empresa || null,
         tipo_servicio,
-        ubicacion,
-        presupuesto_estimado: presupuesto_estimado || null,
-        fecha_preferida: fecha_preferida || null,
         mensaje,
-        acepto_terminos: acepto_terminos === 'on' ? true : false,
-        newsletter: newsletter === 'on' ? true : false,
-        ip_address: ip || req.ip,
         timestamp: new Date().toISOString(),
         status: 'nuevo'
     };
