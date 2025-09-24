@@ -172,7 +172,7 @@ const Contacto = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-elivo-blue">Dirección</h4>
-                    <p className="text-gray-600">Av. Francisco de Aguirre 1234<br />La Serena, Región de Coquimbo</p>
+                    <p className="text-gray-600">Av. Lomas del Inca, Parcela 23, lote 3<br />La Serena, Región de Coquimbo</p>
                   </div>
                 </div>
 
@@ -197,7 +197,7 @@ const Contacto = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-elivo-blue">Email</h4>
-                    <p className="text-gray-600">contacto@elivo.cl</p>
+                    <p className="text-gray-600">ivomanfredi@gmail.com</p>
                   </div>
                 </div>
 

@@ -56,5 +56,85 @@
     "mensaje": "no entro\n",
     "timestamp": "2025-09-23T15:52:11.421Z",
     "status": "nuevo"
+  },
+  {
+    "id": 1758724252793,
+    "nombre": "Luciano",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:30:52.794Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724261991,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:01.991Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724266697,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730 ",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:06.697Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724266765,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730 ",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:06.765Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724267810,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730 ",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:07.810Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724267940,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730 ",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:07.940Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724268040,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730 ",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:08.040Z",
+    "status": "nuevo"
+  },
+  {
+    "id": 1758724268095,
+    "nombre": "Luciano manfredi",
+    "email": "lmanfredib@gmail.com",
+    "telefono": "957546730 ",
+    "tipo_servicio": "mantenimiento",
+    "mensaje": "mantenimiento ",
+    "timestamp": "2025-09-24T14:31:08.095Z",
+    "status": "nuevo"
   }
 ]
