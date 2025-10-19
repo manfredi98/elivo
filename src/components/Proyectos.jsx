@@ -68,6 +68,7 @@ const Proyectos = ({ id }) => {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"
                   decoding="async"
+                  sizes="(min-width: 1024px) 33vw, 100vw"
                 />
                 <div className="absolute top-4 right-4 bg-elivo-yellow text-elivo-blue px-3 py-1 rounded-full text-sm font-semibold">
                   {proyecto.year}
