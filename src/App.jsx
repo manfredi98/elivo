@@ -1,12 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Servicios from './components/Servicios';
-import Proyectos from './components/Proyectos';
-import Nosotros from './components/Nosotros';
-import Contacto from './components/Contacto';
-import Footer from './components/Footer';
+import LazySection from './components/LazySection';
 
 function App() {
   return (
@@ -18,22 +13,16 @@ function App() {
       <main>
         {/* Sección Hero */}
         <Hero />
-        
-        {/* Sección Servicios */}
-        <Servicios />
-        
-        {/* Sección Proyectos */}
-        <Proyectos />
-        
-        {/* Sección Nosotros */}
-        <Nosotros />
-        
-        {/* Sección Contacto */}
-        <Contacto />
+
+        {/* Secciones bajo el pliegue: se cargan bajo demanda */}
+        <LazySection importer={() => import('./components/Servicios')} id="servicios" placeholderHeight="80vh" />
+        <LazySection importer={() => import('./components/Proyectos')} id="proyectos" placeholderHeight="120vh" />
+        <LazySection importer={() => import('./components/Nosotros')} id="nosotros" placeholderHeight="100vh" />
+        <LazySection importer={() => import('./components/Contacto')} id="contacto" placeholderHeight="120vh" />
       </main>
       
-      {/* Footer */}
-      <Footer />
+      {/* Footer (también diferido) */}
+      <LazySection importer={() => import('./components/Footer')} placeholderHeight="300px" />
     </div>
   );
 }
