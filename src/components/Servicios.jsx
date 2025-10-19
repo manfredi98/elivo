@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Servicios = () => {
+const Servicios = ({ id }) => {
   const servicios = [
     {
       icon: (
@@ -46,7 +46,7 @@ const Servicios = () => {
   ];
 
   return (
-    <section id="servicios" className="bg-gray-50">
+    <section id={id || 'servicios'} className="bg-gray-50">
       <div className="container-custom section-padding">
         <motion.div
           className="text-center mb-16"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Proyectos = () => {
+const Proyectos = ({ id }) => {
   const proyectos = [
     {
       id: 1,
@@ -33,7 +33,7 @@ const Proyectos = () => {
   ];
 
   return (
-    <section id="proyectos" className="bg-white">
+    <section id={id || 'proyectos'} className="bg-white">
       <div className="container-custom section-padding">
         <motion.div
           className="text-center mb-16"
@@ -66,6 +66,9 @@ const Proyectos = () => {
                   src={proyecto.image}
                   alt={proyecto.title}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 33vw, 100vw"
                 />
                 <div className="absolute top-4 right-4 bg-elivo-yellow text-elivo-blue px-3 py-1 rounded-full text-sm font-semibold">
                   {proyecto.year}

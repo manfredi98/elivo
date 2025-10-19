@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const Contacto = () => {
+const Contacto = ({ id }) => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -25,7 +25,7 @@ const Contacto = () => {
   };
 
   return (
-    <section id="contacto" className="bg-white">
+    <section id={id || 'contacto'} className="bg-white">
       <div className="container-custom section-padding">
         <motion.div
           className="text-center mb-16"
