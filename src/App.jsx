@@ -16,6 +16,8 @@ function App() {
 
         {/* Secciones bajo el pliegue: se cargan bajo demanda */}
         <LazySection importer={() => import('./components/Servicios')} id="servicios" placeholderHeight="80vh" />
+        {/* Tienda */}
+        <LazySection importer={() => import('./components/Tienda')} id="tienda" placeholderHeight="120vh" />
         <LazySection importer={() => import('./components/Proyectos')} id="proyectos" placeholderHeight="120vh" />
         <LazySection importer={() => import('./components/Nosotros')} id="nosotros" placeholderHeight="100vh" />
         <LazySection importer={() => import('./components/Contacto')} id="contacto" placeholderHeight="120vh" />
