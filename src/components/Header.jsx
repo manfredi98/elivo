@@ -11,7 +11,6 @@ const Header = () => {
     { name: 'Servicios', href: '#servicios' },
     { name: 'Proyectos', href: '#proyectos' },
     { name: 'Tienda', href: '#tienda' },
-    { name: 'Nosotros', href: '#nosotros' },
     { name: 'Contacto', href: '#contacto' }
   ];
 
@@ -26,19 +25,20 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <motion.div 
-            className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-10 h-10 bg-elivo-yellow rounded-lg flex items-center justify-center">
-              <span className="text-elivo-blue font-bold text-xl">E</span>
-            </div>
-            <span className="text-2xl font-bold text-elivo-blue font-montserrat">
-              Elivo
-            </span>
+            <a href="#inicio" aria-label="Ir al inicio" className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-elivo-yellow rounded-lg flex items-center justify-center">
+                <span className="text-elivo-blue font-bold text-xl">E</span>
+              </div>
+              <span className="text-2xl font-bold text-elivo-blue font-montserrat">
+                Elivo
+              </span>
+            </a>
           </motion.div>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Navegación principal">
             {menuItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -55,12 +55,14 @@ const Header = () => {
             
             {/* Botón del carrito */}
             <motion.button
+              type="button"
               onClick={abrirCarrito}
+              aria-label="Abrir carrito"
               className="relative p-2 text-elivo-blue hover:text-elivo-yellow transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
               </svg>
               {cantidadItems > 0 && (
@@ -80,10 +82,12 @@ const Header = () => {
           <div className="md:hidden flex items-center space-x-4">
             {/* Botón del carrito móvil */}
             <button
+              type="button"
               onClick={abrirCarrito}
+              aria-label="Abrir carrito"
               className="relative p-2 text-elivo-blue"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
               </svg>
               {cantidadItems > 0 && (
@@ -95,10 +99,14 @@ const Header = () => {
             
             {/* Botón del menú móvil */}
             <button
+              type="button"
               className="text-elivo-blue"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
@@ -107,6 +115,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <motion.div
+          id="mobile-menu"
           className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: isMenuOpen ? 1 : 0, height: isMenuOpen ? 'auto' : 0 }}

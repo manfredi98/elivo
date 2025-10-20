@@ -48,6 +48,7 @@ const Hero = ({ id }) => {
             >
               <motion.a
                 href="#contacto"
+                aria-label="Ir a contacto"
                 className="btn-primary text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -57,6 +58,7 @@ const Hero = ({ id }) => {
               
               <motion.a
                 href="#servicios"
+                aria-label="Ir a servicios"
                 className="btn-secondary text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
