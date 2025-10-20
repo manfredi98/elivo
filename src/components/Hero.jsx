@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Hero = () => {
+const Hero = ({ id }) => {
   return (
-    <section id="inicio" className="pt-20 bg-gradient-to-br from-elivo-blue to-blue-900 text-white">
+    <section id={id || 'inicio'} className="pt-20 bg-gradient-to-br from-elivo-blue to-blue-900 text-white">
       <div className="container-custom section-padding">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Contenido principal */}

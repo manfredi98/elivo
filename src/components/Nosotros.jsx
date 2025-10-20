@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Nosotros = () => {
+const Nosotros = ({ id }) => {
   const valores = [
     {
       icon: (
@@ -33,7 +33,7 @@ const Nosotros = () => {
   ];
 
   return (
-    <section id="nosotros" className="bg-gray-50">
+    <section id={id || 'nosotros'} className="bg-gray-50">
       <div className="container-custom section-padding">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Contenido principal */}
