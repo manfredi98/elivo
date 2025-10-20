@@ -89,7 +89,8 @@ const Cart = ({ isOpen, onClose, carrito, setCarrito }) => {
           producto_id: item.id,
           cantidad: item.cantidad
         })),
-        total: total
+        total: total,
+        payment_method: 'mercadopago'
       };
 
       const response = await fetch(`${API_BASE_URL}/api/ordenes`, {
@@ -110,6 +111,22 @@ const Cart = ({ isOpen, onClose, carrito, setCarrito }) => {
           total: total,
           clientSecret: data.data.clientSecret
         });
+
+        // Crear preferencia de Mercado Pago y redirigir
+        try {
+          const prefResp = await fetch(`${API_BASE_URL}/api/ordenes/${data.data.ordenId}/mercadopago/preference`, {
+            method: 'POST'
+          });
+          const prefData = await prefResp.json();
+          if (prefData.success && prefData.data?.initPoint) {
+            window.location.href = prefData.data.initPoint;
+            return;
+          }
+        } catch (e) {
+          console.error('Error creando preferencia de Mercado Pago:', e);
+        }
+
+        // Si no hay MP o falla, fallback al checkout interno
         setShowCheckout(true);
       } else {
         setMessage({
