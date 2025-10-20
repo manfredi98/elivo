@@ -275,7 +275,7 @@ const Contacto = ({ id }) => {
               viewport={{ once: true }}
             >
               <a
-                href="https://wa.me/56912345678?text=Hola, me interesa solicitar una cotización para servicios eléctricos"
+                href="https://wa.me/56990806787?text=Hola, me interesa solicitar una cotización para servicios eléctricos"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center space-x-3 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors duration-300"
