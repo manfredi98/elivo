@@ -180,7 +180,7 @@ const Contacto = ({ id }) => {
                   value={formData.telefono}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="+56 9 1234 5678"
+                  placeholder="+56 9 90806787"
                   error={touched.telefono ? errors.telefono : ''}
                   icon={
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
