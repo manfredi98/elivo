@@ -356,14 +356,14 @@ const Contacto = ({ id }) => {
             {/* Mapa embebido */}
             <div className="bg-gray-200 rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.123456789!2d-71.2345678!3d-29.9012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDU0JzA0LjQiUyA3McKwMTQnMDQuNCJX!5e0!3m2!1ses!2scl!4v1234567890123!5m2!1ses!2scl"
+                src="https://www.google.com/maps?q=3RFC%2BX9%20Coquimbo&output=embed"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación de Elivo en La Serena"
+                title="Ubicación de Elivo en Coquimbo"
               />
             </div>
           </motion.div>
