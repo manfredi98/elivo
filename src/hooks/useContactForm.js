@@ -28,41 +28,38 @@ export const useContactForm = () => {
           text: data.message || '¡Mensaje enviado correctamente!'
         });
         setRetryCount(0);
+        setIsLoading(false);
         return { success: true, data: data.data };
       } else {
         setMessage({
           type: 'error',
           text: data.message || 'Error al enviar el mensaje'
         });
+        setIsLoading(false);
         return { success: false, error: data.message };
       }
     } catch (error) {
       console.error('Error al enviar contacto:', error);
       
       if (retries > 0) {
+        const nextRetries = retries - 1;
         setRetryCount(prev => prev + 1);
         setMessage({
           type: 'warning',
           text: `Error de conexión. Reintentando... (${retries} intentos restantes)`
         });
         
-        // Reintentar después de 2 segundos
-        setTimeout(() => {
-          sendContact(formData, retries - 1);
-        }, 2000);
-        
-        return { success: false, error: error.message, retrying: true };
+        // Reintentar después de 2 segundos utilizando una llamada recursiva encadenada
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        return await sendContact(formData, nextRetries);
       } else {
         setMessage({
           type: 'error',
           text: 'Error de conexión. Por favor, inténtalo más tarde.'
         });
         setRetryCount(0);
-        return { success: false, error: error.message };
-      }
-    } finally {
-      if (retries === 0) {
         setIsLoading(false);
+        return { success: false, error: error.message };
       }
     }
   }, [API_BASE_URL]);
