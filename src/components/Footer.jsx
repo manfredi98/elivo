@@ -45,7 +45,7 @@ const Footer = () => {
             
             <p className="text-blue-100 mb-6 font-open-sans leading-relaxed">
               Soluciones eléctricas integrales en La Serena y Región de Coquimbo. 
-              Más de 10 años brindando servicios de calidad, seguridad y eficiencia.
+              Más de 20 años brindando servicios de calidad, seguridad y eficiencia.
             </p>
 
             {/* Redes sociales */}
